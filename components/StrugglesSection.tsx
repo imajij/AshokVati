@@ -3,6 +3,7 @@
 import { useRef, useEffect } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import Image from 'next/image';
 
 export default function StrugglesSection() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -66,28 +67,15 @@ export default function StrugglesSection() {
             }}
           />
 
-          {/* Silhouette graphic – person with joint pain */}
-          <svg
-            className="absolute inset-0 w-full h-full opacity-25"
-            viewBox="0 0 300 400"
-            fill="none"
-          >
-            {/* Head */}
-            <circle cx="150" cy="90" r="42" fill="rgba(255,255,255,0.75)" />
-            {/* Neck */}
-            <rect x="138" y="128" width="24" height="22" rx="8" fill="rgba(255,255,255,0.75)" />
-            {/* Upper body */}
-            <path
-              d="M90 152 Q90 135 150 135 Q210 135 210 152 L220 280 L80 280 Z"
-              fill="rgba(255,255,255,0.75)"
+          {/* Actual Image */}
+          <div className="absolute inset-0">
+            <Image
+              src="/products/product1.jpg"
+              alt="Modern Struggles"
+              fill
+              className="object-cover opacity-80"
             />
-            {/* Arms */}
-            <path d="M90 160 Q60 185 55 240" stroke="rgba(255,255,255,0.75)" strokeWidth="22" strokeLinecap="round" />
-            <path d="M210 160 Q240 185 245 240" stroke="rgba(255,255,255,0.75)" strokeWidth="22" strokeLinecap="round" />
-            {/* Legs */}
-            <path d="M120 280 L105 370" stroke="rgba(255,255,255,0.75)" strokeWidth="24" strokeLinecap="round" />
-            <path d="M180 280 L195 370" stroke="rgba(255,255,255,0.75)" strokeWidth="24" strokeLinecap="round" />
-          </svg>
+          </div>
 
           {/* Greenish organic overlay */}
           <div

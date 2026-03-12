@@ -1,14 +1,8 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
-import dynamic from 'next/dynamic';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-
-/* 3D bottle — client-only, wraps @react-three/fiber Canvas */
-const HeroBottle3D = dynamic(() => import('@/components/HeroBottle3D'), {
-  ssr: false,
-});
 
 /* ─── SVG Tree components ─────────────────────── */
 function TreesSVGBack() {
@@ -347,8 +341,7 @@ export default function HeroSection() {
         ))}
       </div>
 
-      {/* ── 3D Bottle Model with orbiting leaves ── */}
-      <HeroBottle3D />
+      {/* ── 3D Bottle Model removed per user request ── */}
 
       {/* ── Hero content ── */}
       <div
