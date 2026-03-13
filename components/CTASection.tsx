@@ -107,6 +107,10 @@ export default function CTASection() {
           <br />
           <span className="text-gold-400 italic">Healing Journey</span>
         </h2>
+        {/* Hindi subtitle */}
+        <p className="text-gold-400/70 font-sans text-sm italic mb-3">
+          अपनी सेहत की शुरुआत आज ही करें
+        </p>
         <p className="text-cream/55 font-sans text-sm leading-relaxed mb-10 max-w-lg mx-auto">
           Discover the path that your body needs today. Ancient wisdom meets
           modern science to restore your natural balance.
@@ -127,8 +131,23 @@ export default function CTASection() {
           </a>
         </div>
 
+        {/* Google Form CTA */}
+        <div className="mt-8 flex justify-center">
+          <a
+            href="YOUR_GOOGLE_FORM_LINK_HERE"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-3 px-10 py-4 text-sm font-sans font-semibold tracking-widest uppercase rounded-full border border-gold-500 text-gold-400 hover:bg-gold-500 hover:text-forest-900 transition-all duration-300"
+          >
+            <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <path d="M9 12h6M9 16h6M17 21H7a2 2 0 01-2-2V5a2 2 0 012-2h7l5 5v11a2 2 0 01-2 2z" />
+            </svg>
+            अभी फॉर्म भरें &nbsp;/&nbsp; Fill the Order Form
+          </a>
+        </div>
+
         {/* Trust line */}
-        <p className="mt-8 text-cream/30 text-xs font-sans tracking-wide">
+        <p className="mt-6 text-cream/30 text-xs font-sans tracking-wide">
           Free shipping • 30-day money-back guarantee • No subscription
         </p>
       </div>

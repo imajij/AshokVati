@@ -8,41 +8,45 @@ const INGREDIENTS = [
   {
     id: 'gurkhalil',
     name: 'Gurkhalil',
+    hindiName: 'गुरखलील',
     latin: 'Terminalia chebula',
     desc: 'The king of herbs — powerful antioxidant and detoxifier known to support joint health.',
+    imageUrl: 'https://commons.wikimedia.org/wiki/Special:FilePath/Harra_(Terminalia_chebula)_hanging_fruit_at_23_Mile,_Duars,_WB_W_IMG_5902.jpg',
     color1: '#111111',
     color2: '#1a1a1a',
-    svgPath: 'M10 20C10 20 6 18 5 14C4.5 11.5 6 8 10 7C14 6 17 9 16 13C15 17 12 20 10 20Z M14 6C14 6 17 4 19 6C20.5 7.5 20 11 17 12',
     accentColor: '#d0d0d0',
   },
   {
     id: 'kali-erai',
     name: 'Kali Erai',
+    hindiName: 'पिप्पली',
     latin: 'Piper longum',
     desc: 'Long pepper root with bioavailability-enhancing properties that supercharge the formula.',
+    imageUrl: 'https://commons.wikimedia.org/wiki/Special:FilePath/Piper_longum.jpg',
     color1: '#0d0d0d',
     color2: '#161616',
-    svgPath: 'M12 19C9 19 6 16.5 6 13C6 9 9 5 12 4C15 3 18 6 18 10C18 15 15 19 12 19Z M12 19L12 22',
     accentColor: '#c0c0c0',
   },
   {
     id: 'ashwagandha',
     name: 'Ashwagandha',
+    hindiName: 'अश्वगन्धा',
     latin: 'Withania somnifera',
     desc: 'The adaptogenic root that reduces cortisol, builds resilience, and supports joint tissue.',
+    imageUrl: 'https://commons.wikimedia.org/wiki/Special:FilePath/Ashwagandha.jpg',
     color1: '#131313',
     color2: '#1c1c1c',
-    svgPath: 'M12 3C12 3 5 9 5 15C5 18.87 8.13 22 12 22C15.87 22 19 18.87 19 15C19 9 12 3 12 3Z',
     accentColor: '#e0e0e0',
   },
   {
     id: 'rasna',
     name: 'Rasna',
+    hindiName: 'रास्ना',
     latin: 'Pluchea lanceolata',
     desc: 'Ancient Vata-balancing herb traditionally used for arthritis and muscular disorders.',
+    imageUrl: 'https://commons.wikimedia.org/wiki/Special:FilePath/Pluchea_indica_-_leaves.jpg',
     color1: '#0f0f0f',
     color2: '#181818',
-    svgPath: 'M12 21C12 21 4 16 4 10C4 6.69 6.69 4 10 4C11.12 4 12 4.6 12 4.6C12 4.6 12.88 4 14 4C17.31 4 20 6.69 20 10C20 16 12 21 12 21Z',
     accentColor: '#c8c8c8',
   },
 ];
@@ -131,23 +135,26 @@ export default function IngredientsSection() {
                   background: `linear-gradient(145deg, ${ing.color1} 0%, ${ing.color2} 100%)`,
                 }}
               >
-                {/* Botanical illustration */}
-                <svg
-                  className="absolute inset-0 m-auto w-3/5 h-3/5 ingredient-icon"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  style={{
-                    top: '50%',
-                    left: '50%',
-                    transform: 'translate(-50%, -50%)',
-                    filter: `drop-shadow(0 0 12px ${ing.accentColor}88)`,
-                    animation: 'glowPulse 3s ease-in-out infinite',
+                {/* Real herb image */}
+                <img
+                  src={ing.imageUrl}
+                  alt={ing.name}
+                  className="w-full h-full object-cover ingredient-icon"
+                  style={{ filter: 'brightness(0.98) saturate(1)' }}
+                  onError={(e) => {
+                    (e.target as HTMLImageElement).style.display = 'none';
                   }}
-                >
-                  <path d={ing.svgPath} fill={ing.accentColor} opacity="0.9" />
-                </svg>
+                />
 
-                {/* Glow orb */}
+                {/* Overlay tint */}
+                <div
+                  className="absolute inset-0"
+                  style={{
+                    background: `linear-gradient(to top, ${ing.color1}88 0%, transparent 45%)`,
+                  }}
+                />
+
+                {/* Glow orb on hover */}
                 <div
                   className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
                   style={{
@@ -160,14 +167,17 @@ export default function IngredientsSection() {
                   className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                   style={{
                     background:
-                      'linear-gradient(105deg, transparent 40%, rgba(255,255,255,0.04) 50%, transparent 60%)',
+                      'linear-gradient(105deg, transparent 40%, rgba(255,255,255,0.06) 50%, transparent 60%)',
                   }}
                 />
               </div>
 
               {/* Label area */}
               <div className="p-4">
-                <h3 className="text-cream font-serif text-lg leading-tight">{ing.name}</h3>
+                <h3 className="text-cream font-serif text-lg leading-tight">
+                  {ing.name}
+                  <span className="ml-2 text-gold-400/70 text-sm font-sans not-italic">{ing.hindiName}</span>
+                </h3>
                 <p className="text-gold-500/60 text-[11px] font-sans italic mt-0.5 mb-2">
                   {ing.latin}
                 </p>

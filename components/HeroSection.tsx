@@ -371,6 +371,11 @@ export default function HeroSection() {
           mind &amp; soul.
         </p>
 
+        {/* Hindi tagline */}
+        <p className="hero-desc mt-3 max-w-xl text-gold-400/80 text-sm leading-relaxed font-sans italic">
+          प्राकृतिक जड़ी-बूटियों से बना — शरीर, मन और आत्मा का संतुलन
+        </p>
+
         <div className="hero-cta mt-8 flex gap-4 flex-wrap justify-center">
           <a href="#formulas" className="btn-gold">
             Explore The Formulas
@@ -381,6 +386,17 @@ export default function HeroSection() {
               stroke="currentColor"
               strokeWidth="2"
             >
+              <path d="M5 12h14M12 5l7 7-7 7" />
+            </svg>
+          </a>
+          <a
+            href="YOUR_GOOGLE_FORM_LINK_HERE"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-outline"
+          >
+            अभी ऑर्डर करें
+            <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <path d="M5 12h14M12 5l7 7-7 7" />
             </svg>
           </a>
