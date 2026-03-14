@@ -3,6 +3,7 @@
 import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { GOOGLE_FORM_URL } from '@/constants/links';
 
 /* ─── SVG Tree components ─────────────────────── */
 function TreesSVGBack() {
@@ -390,7 +391,7 @@ export default function HeroSection() {
             </svg>
           </a>
           <a
-            href="YOUR_GOOGLE_FORM_LINK_HERE"
+            href={GOOGLE_FORM_URL}
             target="_blank"
             rel="noopener noreferrer"
             className="btn-outline"

@@ -3,6 +3,7 @@
 import { useRef, useEffect } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { GOOGLE_FORM_URL } from '@/constants/links';
 
 export default function CTASection() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -117,13 +118,23 @@ export default function CTASection() {
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <a href="#shop-orthofix" className="btn-gold px-8 py-3.5 text-sm">
+          <a
+            href={GOOGLE_FORM_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-gold px-8 py-3.5 text-sm"
+          >
             Buy Orthofix Care
             <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <path d="M5 12h14M12 5l7 7-7 7" />
             </svg>
           </a>
-          <a href="#shop-zerosugars" className="btn-outline px-8 py-3.5 text-sm">
+          <a
+            href={GOOGLE_FORM_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-outline px-8 py-3.5 text-sm"
+          >
             Shop Zero Sugar
             <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <path d="M5 12h14M12 5l7 7-7 7" />
@@ -134,7 +145,7 @@ export default function CTASection() {
         {/* Google Form CTA */}
         <div className="mt-8 flex justify-center">
           <a
-            href="YOUR_GOOGLE_FORM_LINK_HERE"
+            href={GOOGLE_FORM_URL}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-3 px-10 py-4 text-sm font-sans font-semibold tracking-widest uppercase rounded-full border border-gold-500 text-gold-400 hover:bg-gold-500 hover:text-forest-900 transition-all duration-300"

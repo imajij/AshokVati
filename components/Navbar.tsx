@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import { gsap } from 'gsap';
+import { GOOGLE_FORM_URL } from '@/constants/links';
 
 const NAV_LINKS = [
   { href: '#formulas', label: 'Orthofix Care' },
@@ -76,7 +77,7 @@ export default function Navbar() {
 
         {/* Desktop CTA */}
         <div className="hidden md:block">
-          <a href="#shop" className="btn-gold text-sm">
+          <a href={GOOGLE_FORM_URL} target="_blank" rel="noopener noreferrer" className="btn-gold text-sm">
             Shop Now
           </a>
         </div>
@@ -122,7 +123,12 @@ export default function Navbar() {
               {link.label}
             </a>
           ))}
-          <a href="#shop" className="btn-gold text-sm text-center mt-1">
+          <a
+            href={GOOGLE_FORM_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-gold text-sm text-center mt-1"
+          >
             Shop Now
           </a>
         </div>

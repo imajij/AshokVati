@@ -1,0 +1,2 @@
+export const GOOGLE_FORM_URL =
+  process.env.NEXT_PUBLIC_GOOGLE_FORM_URL || 'YOUR_GOOGLE_FORM_LINK_HERE';

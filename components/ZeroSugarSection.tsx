@@ -4,6 +4,7 @@ import { useRef, useEffect } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Image from 'next/image';
+import { GOOGLE_FORM_URL } from '@/constants/links';
 
 const FEATURES = [
   {
@@ -120,7 +121,7 @@ export default function ZeroSugarSection() {
             ))}
           </div>
 
-          <a href="#shop" className="btn-gold">
+          <a href={GOOGLE_FORM_URL} target="_blank" rel="noopener noreferrer" className="btn-gold">
             Shop Zero Sugar
             <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <path d="M5 12h14M12 5l7 7-7 7" />
