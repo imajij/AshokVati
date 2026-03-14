@@ -144,7 +144,10 @@ export default function ZeroSugarSection() {
                 src="/products/product2.jpeg"
                 alt="Zero Sugar Formula"
                 fill
+                quality={100}
+                sizes="(max-width: 768px) 72vw, 340px"
                 className="object-contain"
+                style={{ filter: 'brightness(1.14) contrast(1.12) saturate(1.22)' }}
               />
             </div>
 

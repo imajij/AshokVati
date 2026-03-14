@@ -63,7 +63,7 @@ export default function StrugglesSection() {
             className="absolute inset-0"
             style={{
               background:
-                'linear-gradient(160deg, #181818 0%, #0f0f0f 60%, #050505 100%)',
+                'linear-gradient(160deg, #000000 0%, #000000 55%, #020202 100%)',
             }}
           />
 
@@ -73,7 +73,10 @@ export default function StrugglesSection() {
               src="/products/product1.jpeg"
               alt="Modern Struggles"
               fill
+              quality={100}
+              sizes="(max-width: 768px) 80vw, 420px"
               className="object-contain opacity-100"
+              style={{ filter: 'brightness(1.2) contrast(1.18) saturate(1.35)' }}
             />
           </div>
 
@@ -82,7 +85,7 @@ export default function StrugglesSection() {
             className="absolute inset-0"
             style={{
               background:
-                'radial-gradient(ellipse 80% 60% at 50% 40%, rgba(20,20,20,0.3) 0%, rgba(0,0,0,0.65) 100%)',
+                'radial-gradient(ellipse 80% 60% at 50% 40%, rgba(0,0,0,0.02) 0%, rgba(0,0,0,0.32) 100%)',
             }}
           />
 
@@ -97,7 +100,7 @@ export default function StrugglesSection() {
           </div>
 
           {/* Quote overlay at bottom */}
-          <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/85 via-black/40 to-transparent">
+          <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/68 via-black/30 to-transparent">
             <p className="text-cream/80 text-sm font-serif italic leading-relaxed">
               &ldquo;Millions suffer from joint pain and blood sugar imbalance
               due to sedentary lifestyles and processed nutrition.&rdquo;

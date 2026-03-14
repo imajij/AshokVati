@@ -128,7 +128,10 @@ export default function OrthofixSection() {
                 src="/products/combined.jpeg"
                 alt="Orthofix and Zero Sugar products"
                 fill
+                quality={100}
+                sizes="(max-width: 768px) 85vw, 520px"
                 className="object-contain"
+                style={{ filter: 'brightness(1.16) contrast(1.14) saturate(1.25)' }}
                 priority
               />
             </div>
