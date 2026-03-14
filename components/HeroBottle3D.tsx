@@ -1,44 +1,10 @@
 'use client';
 
-import { Suspense, useRef, useEffect, useMemo } from 'react';
-import { Canvas, useFrame } from '@react-three/fiber';
-import { useGLTF, Environment } from '@react-three/drei';
+import { useRef, useEffect } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import * as THREE from 'three';
+import Image from 'next/image';
 import type { CSSProperties } from 'react';
-
-/* ─── Scroll rotation velocity (module-level, safe in client-only component) ─── */
-const vel = { spin: 0 };
-
-/* ─── Auto-scaled GLB Model ──────────────────────────────────────────────────── */
-function BottleModel() {
-  const groupRef = useRef<THREE.Group>(null);
-  const { scene } = useGLTF('/medicine-bottle.glb');
-
-  /* Compute a uniform scale so the tallest dimension fits ~3.5 Three.js units */
-  const scale = useMemo(() => {
-    const box = new THREE.Box3().setFromObject(scene);
-    const size = new THREE.Vector3();
-    box.getSize(size);
-    const maxDim = Math.max(size.x, size.y, size.z);
-    return maxDim > 0 ? 3.5 / maxDim : 1;
-  }, [scene]);
-
-  useFrame((_, delta) => {
-    if (!groupRef.current) return;
-    /* Continuous baseline rotation + scroll-velocity burst */
-    groupRef.current.rotation.y += delta * 0.6 + vel.spin;
-    /* Framerate-independent exponential decay of the scroll burst */
-    vel.spin *= Math.pow(0.93, delta * 60);
-  });
-
-  return (
-    <group ref={groupRef} scale={scale}>
-      <primitive object={scene} />
-    </group>
-  );
-}
 
 /* ─── Leaf SVG paths ──────────────────────────────────────────────────────────── */
 const PATH_A =
@@ -87,16 +53,6 @@ export default function HeroBottle3D() {
         },
       );
 
-      /* Track scroll velocity → extra rotation burst */
-      ScrollTrigger.create({
-        start: 0,
-        end: 'max',
-        onUpdate: (self) => {
-          const v = self.getVelocity();
-          vel.spin =
-            Math.sign(v) * Math.min(Math.abs(v) / 6000, 0.1);
-        },
-      });
     }, wrapperRef);
 
     return () => ctx.revert();
@@ -194,31 +150,25 @@ export default function HeroBottle3D() {
         }}
       />
 
-      {/* 3D Canvas */}
-      <Canvas
-        camera={{ position: [0, 0.5, 7], fov: 38 }}
-        gl={{ antialias: true, alpha: true, powerPreference: 'high-performance' }}
-        dpr={[1, 1.5]}
-        style={{ width: '100%', height: '100%' }}
+      {/* Combined product image */}
+      <div
+        className="absolute"
+        style={{
+          left: '50%',
+          top: '48%',
+          transform: 'translate(-50%, -50%)',
+          width: 300,
+          height: 460,
+        }}
       >
-        <ambientLight intensity={0.6} color="#ffffff" />
-        <directionalLight
-          position={[3, 8, 5]}
-          intensity={2.8}
-          color="#ffffff"
-          castShadow
-          shadow-mapSize={[512, 512]}
+        <Image
+          src="/products/combined.jpeg"
+          alt="Ashokvati product"
+          fill
+          style={{ objectFit: 'contain', filter: 'drop-shadow(0 8px 32px rgba(0,0,0,0.6))' }}
+          priority
         />
-        <pointLight position={[-5, 2, 3]} intensity={1.4} color="#dddddd" />
-        <pointLight position={[0, -2, -5]} intensity={0.5} color="#888888" />
-        <Suspense fallback={null}>
-          <BottleModel />
-          <Environment preset="city" />
-        </Suspense>
-      </Canvas>
+      </div>
     </div>
   );
 }
-
-/* Preload the model so it's ready before viewport intersection */
-useGLTF.preload('/medicine-bottle.glb');
