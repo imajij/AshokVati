@@ -138,12 +138,12 @@ export default function ZeroSugarSection() {
             style={{ aspectRatio: '3/4' }}
           >
             {/* Product Image */}
-            <div className="absolute inset-0">
+            <div className="absolute inset-5 md:inset-7">
               <Image
-                src="/products/product2.jpg"
+                src="/products/product2.jpeg"
                 alt="Zero Sugar Formula"
                 fill
-                className="object-cover"
+                className="object-contain"
               />
             </div>
 

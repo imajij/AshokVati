@@ -68,12 +68,12 @@ export default function StrugglesSection() {
           />
 
           {/* Actual Image */}
-          <div className="absolute inset-0">
+          <div className="absolute inset-4 md:inset-6">
             <Image
-              src="/products/product1.jpg"
+              src="/products/product1.jpeg"
               alt="Modern Struggles"
               fill
-              className="object-cover opacity-80"
+              className="object-contain opacity-100"
             />
           </div>
 
