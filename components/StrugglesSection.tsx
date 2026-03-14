@@ -53,10 +53,49 @@ export default function StrugglesSection() {
       }}
     >
       <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-14 lg:gap-20 items-center">
+        {/* ── Mobile-only Image panel (always visible) ── */}
+        <div className="md:hidden relative aspect-[4/5] max-w-sm mx-auto rounded-3xl overflow-hidden">
+          <div
+            className="absolute inset-0"
+            style={{
+              background:
+                'linear-gradient(160deg, #000000 0%, #000000 55%, #020202 100%)',
+            }}
+          />
+
+          <div className="absolute inset-4">
+            <Image
+              src="/products/product1.jpeg"
+              alt="Modern Struggles"
+              fill
+              quality={100}
+              sizes="88vw"
+              className="object-contain opacity-100"
+              style={{ filter: 'brightness(1.2) contrast(1.18) saturate(1.35)' }}
+              priority
+            />
+          </div>
+
+          <div
+            className="absolute inset-0"
+            style={{
+              background:
+                'radial-gradient(ellipse 80% 60% at 50% 40%, rgba(0,0,0,0.02) 0%, rgba(0,0,0,0.32) 100%)',
+            }}
+          />
+
+          <div className="absolute bottom-0 left-0 right-0 p-5 bg-gradient-to-t from-black/68 via-black/30 to-transparent">
+            <p className="text-cream/80 text-sm font-serif italic leading-relaxed">
+              &ldquo;Millions suffer from joint pain and blood sugar imbalance
+              due to sedentary lifestyles and processed nutrition.&rdquo;
+            </p>
+          </div>
+        </div>
+
         {/* ── Left: Image panel ── */}
         <div
           ref={imageRef}
-          className="relative aspect-[4/5] max-w-md mx-auto md:mx-0 rounded-3xl overflow-hidden will-change-transform"
+          className="hidden md:block relative aspect-[4/5] max-w-md mx-auto md:mx-0 rounded-3xl overflow-hidden will-change-transform"
         >
           {/* Gradient base to simulate a moody photo */}
           <div

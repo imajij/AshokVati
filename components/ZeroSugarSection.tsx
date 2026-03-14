@@ -129,10 +129,39 @@ export default function ZeroSugarSection() {
           </a>
         </div>
 
+        {/* ── Mobile-only image panel (always visible) ── */}
+        <div className="md:hidden">
+          <div
+            className="relative mx-auto max-w-xs rounded-3xl overflow-hidden"
+            style={{ aspectRatio: '3/4' }}
+          >
+            <div className="absolute inset-4">
+              <Image
+                src="/products/product2.jpeg"
+                alt="Zero Sugar Formula"
+                fill
+                quality={100}
+                sizes="82vw"
+                className="object-contain"
+                style={{ filter: 'brightness(1.14) contrast(1.12) saturate(1.22)' }}
+                priority
+              />
+            </div>
+
+            <div
+              className="absolute inset-0 pointer-events-none"
+              style={{
+                background:
+                  'radial-gradient(ellipse 60% 50% at 50% 60%, rgba(200,200,200,0.05) 0%, transparent 70%)',
+              }}
+            />
+          </div>
+        </div>
+
         {/* ── Right: Bottle on wooden platform ── */}
         <div
           ref={imageRef}
-          className="will-change-transform"
+          className="hidden md:block will-change-transform"
         >
           <div
             className="relative mx-auto max-w-xs rounded-3xl overflow-hidden"
