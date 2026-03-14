@@ -3,18 +3,8 @@
 import { useRef, useEffect } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import dynamic from 'next/dynamic';
-import { useIsMobile } from '@/hooks/useIsMobile';
+import Image from 'next/image';
 import { GOOGLE_FORM_URL } from '@/constants/links';
-
-const ThreeBottle = dynamic(() => import('@/components/ThreeBottle'), {
-  ssr: false,
-  loading: () => (
-    <div className="w-full h-full flex items-center justify-center">
-      <div className="w-8 h-8 border-2 border-gold-500/50 border-t-gold-500 rounded-full animate-spin" />
-    </div>
-  ),
-});
 
 const FEATURES = [
   'Reduces chronic joint pain and stiffness',
@@ -22,17 +12,9 @@ const FEATURES = [
   'Natural reduction of inflammation',
 ];
 
-const FLOATING_HERBS = [
-  { label: 'Ashwagandha', angle: -40, radius: 180 },
-  { label: 'Gurkhalil', angle: 40, radius: 195 },
-  { label: 'Kali Erai', angle: 140, radius: 185 },
-  { label: 'Rasna', angle: 220, radius: 190 },
-];
-
 export default function OrthofixSection() {
   const sectionRef = useRef<HTMLElement>(null);
   const canvasRef = useRef<HTMLDivElement>(null);
-  const isMobile = useIsMobile();
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
@@ -79,7 +61,7 @@ export default function OrthofixSection() {
         },
       );
 
-      /* ── 3D canvas scale in ── */
+      /* ── Product image panel scale in ── */
       if (canvasRef.current) {
         gsap.fromTo(
           canvasRef.current,
@@ -93,7 +75,7 @@ export default function OrthofixSection() {
           },
         );
 
-        /* ── Camera zoom effect simulated via scale on scroll ── */
+        /* ── Subtle zoom on scroll ── */
         gsap.to(canvasRef.current, {
           scale: 1.06,
           ease: 'none',
@@ -105,20 +87,6 @@ export default function OrthofixSection() {
           },
         });
       }
-
-      /* ── Floating herb labels ── */
-      gsap.fromTo(
-        '.herb-float-label',
-        { scale: 0, opacity: 0 },
-        {
-          scale: 1,
-          opacity: 1,
-          duration: 0.6,
-          stagger: 0.15,
-          ease: 'back.out(1.8)',
-          scrollTrigger: { trigger: canvasRef.current, start: 'top 75%' },
-        },
-      );
     }, sectionRef);
 
     return () => ctx.revert();
@@ -141,42 +109,11 @@ export default function OrthofixSection() {
         </div>
 
         <div className="grid md:grid-cols-2 gap-12 lg:gap-16 items-center">
-          {/* ── Left: 3D Bottle ── */}
+          {/* ── Left: Product image ── */}
           <div
             ref={canvasRef}
-            className="relative will-change-transform order-2 md:order-1"
-            style={{ height: isMobile ? '380px' : '520px' }}
+            className="relative h-[380px] md:h-[520px] will-change-transform order-2 md:order-1"
           >
-            {/* Floating ingredient labels around bottle */}
-            {!isMobile &&
-              FLOATING_HERBS.map((herb, i) => {
-                const rad = (herb.angle * Math.PI) / 180;
-                const x = 50 + (Math.cos(rad) * herb.radius) / 5.2;
-                const y = 50 + (Math.sin(rad) * herb.radius) / 5.2;
-                return (
-                  <div
-                    key={herb.label}
-                    className="herb-float-label absolute z-10 pointer-events-none"
-                    style={{
-                      left: `${x}%`,
-                      top: `${y}%`,
-                      transform: 'translate(-50%, -50%)',
-                      animation: `float ${5 + i}s ease-in-out infinite`,
-                      animationDelay: `${i * 0.6}s`,
-                    }}
-                  >
-                    <div
-                      className="glass-card px-3 py-1.5 rounded-full text-xs font-sans text-gold-400 border-gold-500/30 whitespace-nowrap"
-                      style={{
-                        filter: 'drop-shadow(0 0 8px rgba(255,255,255,0.25))',
-                      }}
-                    >
-                      ✦ {herb.label}
-                    </div>
-                  </div>
-                );
-              })}
-
             {/* Glow backdrop */}
             <div
               className="absolute inset-0 rounded-3xl pointer-events-none"
@@ -186,36 +123,15 @@ export default function OrthofixSection() {
               }}
             />
 
-            {!isMobile ? (
-              <ThreeBottle className="w-full h-full" showParticles />
-            ) : (
-              /* Simplified mobile: static bottle illustration */
-              <div className="w-full h-full flex items-center justify-center">
-                <svg viewBox="0 0 120 260" width="120" height="260" fill="none">
-                  <defs>
-                    <linearGradient id="bottleGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                      <stop offset="0%" stopColor="#282828" />
-                      <stop offset="100%" stopColor="#0d0d0d" />
-                    </linearGradient>
-                  </defs>
-                  <path
-                    d="M35 240 Q25 230 25 200 L25 100 Q25 85 35 80 L40 70 L40 55 Q40 45 50 45 Q55 40 60 40 Q65 40 70 45 L80 55 L80 70 L85 80 Q95 85 95 100 L95 200 Q95 230 85 240 Z"
-                    fill="url(#bottleGrad)"
-                    stroke="rgba(255,255,255,0.12)"
-                    strokeWidth="1"
-                  />
-                  <rect x="50" y="30" width="20" height="18" rx="3" fill="#111111" />
-                  <rect x="55" y="15" width="10" height="18" rx="2" fill="#1a1a1a" />
-                  <rect x="50" y="8" width="20" height="10" rx="2" fill="#111111" />
-                  <ellipse cx="60" cy="240" rx="25" ry="5" fill="#0a0a0a" />
-                  <line x1="35" y1="130" x2="85" y2="130" stroke="rgba(255,255,255,0.10)" strokeWidth="1" />
-                  <text x="42" y="155" fill="rgba(220,220,220,0.7)" fontSize="8" fontFamily="serif">
-                    Ashokvati
-                  </text>
-                  <rect x="44" y="72" width="2" height="15" rx="1" fill="#c0c0c0" opacity="0.8" />
-                </svg>
-              </div>
-            )}
+            <div className="absolute inset-4 md:inset-8 rounded-3xl overflow-hidden">
+              <Image
+                src="/products/combined.jpeg"
+                alt="Orthofix and Zero Sugar products"
+                fill
+                className="object-contain"
+                priority
+              />
+            </div>
           </div>
 
           {/* ── Right: Content ── */}
