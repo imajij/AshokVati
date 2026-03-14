@@ -191,12 +191,12 @@ export default function ZeroSugarSection() {
 
             {/* Leaf decoration */}
             <div className="absolute top-8 right-6 opacity-30 animate-float-slow">
-              <svg viewBox="0 0 40 40" width="36" fill="#c0c0c0">
+              <svg viewBox="0 0 40 40" width="36" fill="#4ea35a">
                 <path d="M20 2C20 2 2 14 2 26C2 34.28 10.27 40 20 40C29.73 40 38 34.28 38 26C38 14 20 2 20 2Z" />
               </svg>
             </div>
             <div className="absolute top-16 left-5 opacity-20 animate-float" style={{ animationDelay: '2s' }}>
-              <svg viewBox="0 0 30 30" width="26" fill="#a0a0a0">
+              <svg viewBox="0 0 30 30" width="26" fill="#3f8f4d">
                 <path d="M15 2C15 2 2 9 2 18C2 24.63 7.37 30 15 30C22.63 30 28 24.63 28 18C28 9 15 2 15 2Z" />
               </svg>
             </div>

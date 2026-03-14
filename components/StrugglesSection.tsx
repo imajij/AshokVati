@@ -133,7 +133,7 @@ export default function StrugglesSection() {
             <svg viewBox="0 0 80 80" width="70" fill="none">
               <path
                 d="M40 5C40 5 5 30 5 55C5 69.36 17.09 80 40 80C62.91 80 75 69.36 75 55C75 30 40 5 40 5Z"
-                fill="#c0c0c0"
+                fill="#4ea35a"
               />
             </svg>
           </div>
